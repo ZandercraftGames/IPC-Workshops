@@ -50,3 +50,9 @@ Debug/
 *.exe
 *.out
 *.app
+
+# CLion
+.idea
+
+# Cmake
+cmake-build-debug
