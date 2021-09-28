@@ -90,7 +90,7 @@ int main(void)
                "Machine error! Thank you for letting me keep $%.2lf!\n", cashFormat(cents));
     } else {
         printf("\n"
-               "All coins dispensed!");
+               "All coins dispensed!\n");
     }
 
     // End program.

@@ -1,0 +1,30 @@
+Zander Maitland
+112303219
+Workshop 2
+
+    1. The reason why 10.12 becomes 10.11999 when its decimal places are expanded is because of how computers handle
+       floating-point (decimal) numbers. Cases of division can result in an infinite number, which cannot easily be
+       stored in the amount of bytes of memory assigned to the variable type. This results in rounding causing slight
+       imprecisions in the stored number.
+
+    2. (a) {0, 1}
+       (b) {0, 1, 2}
+       (c) [0..99]
+
+
+    3.
+        5 pizzas will be completely consumed, no extra pieces will be needed to feed the guests. There are 69 extra
+        slices.
+        --- C-Language:
+        int totalSlices = 11 * 12;
+        int estimatedSlicesConsumed = 21 * 3;
+        int wholePizzasEaten = estimatedSlicesConsumed / 12;
+        int extraSlicesNeeded = estimatedSlicesConsumed % totalSlices;
+        ---
+
+    4. Converting a floating point number to an integer when performing arithmetic operations helps to guarantee accuracy
+       since floating point numbers are stored in a specific way that can result in infinite numbers in some cases. These
+       infinite numbers need to be rounded by the computer into a finite number in order to store it in the memory or carry
+       out operations on it. This can result in rounding errors and minor inaccuracies that can add up over time or cause
+       issues with displaying values. This stems from computers operating in binary which doesn't nicely support anything
+       but integers.
