@@ -40,11 +40,13 @@ int main(void)
     const int DEC = 12;
     int correctYear = 0;  // Used to track if the user has input the correct year value.
     int correctMonth = 0; // Used to track if the user has input the correct month value.
-    int startYear;      // The starting year of the log
-    int startMonth;     // The starting month of the log
+    int startYear;        // The starting year of the log
+    int startMonth;       // The starting month of the log
+    int startDay = 1;     // The starting day of the log. Default = 1.
+    char *monthName;
 
     // Application Introduction
-    printf("General Well-bring Log\n"
+    printf("General Well-being Log\n"
            "======================\n");
 
     // Start user prompt loop.
@@ -72,14 +74,58 @@ int main(void)
             printf("   ERROR: Jan.(1) - Dec.(12)\n");
             correctMonth = 0;
         }
-        // Continue loop as the conditions have not been met.
-        printf("%d %d", correctYear, correctMonth);
+        // Continue loop unless conditions have been met.
     }
 
-    // Loop has successfully finished. Send confirmation to user.
-    printf("*** Log date set! ***\n");
+    // Match month number to month name.
+    switch (startMonth) {
+        case 1:
+            monthName = "JAN";
+            break;
+        case 2:
+            monthName = "FEB";
+            break;
+        case 3:
+            monthName = "MAR";
+            break;
+        case 4:
+            monthName = "APR";
+            break;
+        case 5:
+            monthName = "MAY";
+            break;
+        case 6:
+            monthName = "JUN";
+            break;
+        case 7:
+            monthName = "JUL";
+            break;
+        case 8:
+            monthName = "AUG";
+            break;
+        case 9:
+            monthName = "SEP";
+            break;
+        case 10:
+            monthName = "OCT";
+            break;
+        case 11:
+            monthName = "NOV";
+            break;
+        case 12:
+            monthName = "DEC";
+            break;
+        default:
+            printf("ERROR: An error was encountered when assigning a month name. Please report this to the developer!");
+            return 1;
+    }
 
+    // Send confirmation to user.
+    printf("\n"
+           "*** Log date set! ***\n");
 
+    printf("\n"
+           "Log starting date: %d-%s-%02d\n", startYear, monthName, startDay);
 
     return 0;
 }
