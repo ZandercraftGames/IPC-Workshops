@@ -1,0 +1,38 @@
+Zander Maitland
+112303219
+Workshop 2
+
+    1. Mapping the month integer to the month name can be achieved using either a case-switch construct,
+       as I used in this program, or an "if, else if" chain. The benefit of using the case-switch is that
+       it is based on one condition and you do not have to re-write that condition for each case.
+
+       --- Case-Switch ---
+       switch (month) {
+            case 1:
+               monthName = "JAN";
+               break;
+            case 2:
+               monthName = "FEB";
+               break;
+
+            . . .
+            default:
+                printf("*error message here*");
+       }
+
+       --- If, Else If ---
+       if (month = 1) {
+          monthName = "JAN";
+       } else if (month = 2) {
+          monthName = "FEB";
+       } . . .
+       else {
+           printf("*error message here*");
+       }
+
+    2. The three types of iteration constructs are while loops, for loops and do-while loops.
+       I used a while loop for my validation routines because it will run until a condition is
+       met. This allows for running infinitely and only when the condition is met does it stop
+       running. A do-while loop could probably also work for this though.
+
+    3.
