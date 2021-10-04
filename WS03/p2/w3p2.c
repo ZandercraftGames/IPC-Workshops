@@ -130,13 +130,11 @@ int main(void)
     printf("\n"
            "*** Log date set! ***\n");
 
-    printf("\n");
-
     int currentDay;  // Define for backwards compatibility with previous versions of C.
 
     // Create a loop to prompt the user for the specific number of days.
     for (currentDay = 1; currentDay <= LOG_DAYS; currentDay++) {
-        printf("%d-%s-%02d\n", startYear, monthName, currentDay);
+        printf("\n%d-%s-%02d\n", startYear, monthName, currentDay);
 
         int morningCorrect = 0;  // Validation status
         int eveningCorrect = 0;  // Validation status
