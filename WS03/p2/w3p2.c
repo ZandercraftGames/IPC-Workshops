@@ -43,7 +43,6 @@ int main(void)
     int correctMonth = 0; // Used to track if the user has input the correct month value.
     int startYear;        // The starting year of the log
     int startMonth;       // The starting month of the log
-    int startDay = 1;     // The starting day of the log. Default = 1.
     char *monthName;      // The name of the month that the log starts on.
     double morningTotal = 0;  // The total of morning ratings
     double eveningTotal = 0;  // The total of evening ratings
