@@ -110,8 +110,7 @@ int main(void) {
                 correct = 1;
             } else {
                 // The answer is invalid. Return an error.
-                printf("\n"
-                       "      ERROR: Value must be between 1 and 3\n");
+                printf("      ERROR: Value must be between 1 and 3\n");
                 correct = 0;
             }
         }
@@ -121,6 +120,7 @@ int main(void) {
         // Begin validation loop for financing options.
         while (!correct) {
             // Prompt user for financing options
+            // TODO: Investigate why first input is automatically taken and repeats twice.
             printf("   Does this item have financing options? [y/n]: ");
             scanf("%c", &itemFinance[i - 1]);
 
@@ -129,11 +129,20 @@ int main(void) {
                 correct = 1;
             } else {
                 // Incorrect answer provided. Return error.
-                printf("\n"
-                       "      ERROR: Must be a lowercase 'y' or 'n'\n");
+                printf("      ERROR: Must be a lowercase 'y' or 'n'\n");
+                correct = 0;
             }
         }
 
         correct = 0; // Reset validity tracker for use in next loop.
+    }
+
+    // All values have been collected. Print out the table.
+    printf("Item Priority Financed        Cost\n");
+    printf("-------------------------------\n");
+
+    // Loop through entries in the arrays.
+    for (j = 1;) {
+
     }
 }
