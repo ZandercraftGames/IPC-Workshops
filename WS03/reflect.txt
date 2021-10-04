@@ -35,4 +35,10 @@ Workshop 2
        met. This allows for running infinitely and only when the condition is met does it stop
        running. A do-while loop could probably also work for this though.
 
-    3.
+    3. To test the program, I went through testing each error/failure case as well as testing
+       entries that are supposed to be accepted at and around the limits. Through a couple of runs,
+       some tweaking and formatting changes, I found the program to be complete. Beyond that, I also
+       made sure to test every path in the code that the program could go down, such as an incorrect
+       entry for morning, then a correct one for morning when re-prompted followed by an incorrect one
+       for evening and a correct entry for evening. This process was carried out for each entry required
+       by the program.

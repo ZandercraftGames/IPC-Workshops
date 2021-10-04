@@ -133,6 +133,8 @@ int main(void)
 
     printf("\n");
 
+    int currentDay;  // Define for backwards compatibility with previous versions of C.
+
     // Create a loop to prompt the user for the specific number of days.
     for (int currentDay=1; currentDay <= LOG_DAYS; currentDay++) {
         printf("%d-%s-%02d\n", startYear, monthName, currentDay);
@@ -177,7 +179,8 @@ int main(void)
     overallAverage = (overallTotal / 2) / LOG_DAYS;
 
     // Return information to the user.
-    printf("Summary\n"
+    printf("\n"
+           "Summary\n"
            "=======\n"
            "Morning total rating: %.3lf\n"
            "Evening total rating: %.3lf\n"
