@@ -136,7 +136,7 @@ int main(void)
     int currentDay;  // Define for backwards compatibility with previous versions of C.
 
     // Create a loop to prompt the user for the specific number of days.
-    for (int currentDay=1; currentDay <= LOG_DAYS; currentDay++) {
+    for (currentDay = 1; currentDay <= LOG_DAYS; currentDay++) {
         printf("%d-%s-%02d\n", startYear, monthName, currentDay);
 
         int morningCorrect = 0;  // Validation status
