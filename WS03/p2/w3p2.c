@@ -184,10 +184,10 @@ int main(void)
            "----------------------------\n"
            "Overall total rating: %.3lf\n"
            "\n"
-           "Average morning rating: %.1lf\n"
-           "Average evening rating: %.1lf\n"
+           "Average morning rating:  %.1lf\n"
+           "Average evening rating:  %.1lf\n"
            "----------------------------\n"
-           "Average overall rating: %.1lf\n", morningTotal, eveningTotal, overallTotal,
+           "Average overall rating:  %.1lf\n", morningTotal, eveningTotal, overallTotal,
            morningAverage, eveningAverage, overallAverage);
 
     return 0;
