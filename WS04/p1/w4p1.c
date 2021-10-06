@@ -22,6 +22,7 @@ int main(void) {
     double userIncome;                // The monthly net income that the user provides.
     int itemCount;                    // The number of wish list items that the user provides.
     const double min_cost = 100;      // The minimum cost of an item.
+    double totalCost = 0;                 // Keeps track of the total cost of all items added together.
 
     // Parallel Array Declaration
     double itemCost[MAX_ITEMS];       // The array used to store the cost of the items.
@@ -89,6 +90,7 @@ int main(void) {
 
             // Validate the answer to be within the range.
             if (itemCost[i - 1] >= min_cost) {
+                totalCost += itemCost[i - 1];  // Add cost to total cost.
                 correct = 1;
             } else {
                 // The user entered a value under the minimum cost, return error.
@@ -145,5 +147,13 @@ int main(void) {
     for (j = 1; j <= itemCount; j++) {
         printf("%3d  %5d    %5c    %11.2lf\n", j, itemPriority[j - 1], itemFinance[j - 1], itemCost[j - 1]);
     }
+
+    // Print summary to user
+    printf("---- -------- -------- -----------\n"
+           "                      $%11.2lf\n\n", totalCost);
+
+    // Print exit message
+    printf("Best of luck in all your future endeavours!\n");
+
     return 0; // End program
 }
