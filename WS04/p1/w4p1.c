@@ -139,7 +139,8 @@ int main(void) {
     }
 
     // All values have been collected. Print out the table.
-    printf("Item Priority Financed        Cost\n");
+    printf("\n"
+           "Item Priority Financed        Cost\n");
     printf("---- -------- -------- -----------\n");
 
     // Loop through entries in the arrays.
