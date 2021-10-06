@@ -120,9 +120,8 @@ int main(void) {
         // Begin validation loop for financing options.
         while (!correct) {
             // Prompt user for financing options
-            // TODO: Investigate why first input is automatically taken and repeats twice.
             printf("   Does this item have financing options? [y/n]: ");
-            scanf("%c", &itemFinance[i - 1]);
+            scanf(" %c", &itemFinance[i - 1]);  // Whitespace avoids automatically taking newline from input stream.
 
             // Validate the answer
             if (itemFinance[i - 1] == 'y' || itemFinance[i - 1] == 'n') {
@@ -139,10 +138,11 @@ int main(void) {
 
     // All values have been collected. Print out the table.
     printf("Item Priority Financed        Cost\n");
-    printf("-------------------------------\n");
+    printf("---- -------- -------- -----------\n");
 
     // Loop through entries in the arrays.
-    for (j = 1;) {
-
+    int j;  // Declare before loop for compatibility
+    for (j = 1; j <= itemCount; j++) {
+        printf("%3d  %5d    %5c    %11.2lf\n", j, itemPriority[j - 1], itemFinance[j - 1], itemCost[j - 1]);
     }
 }
