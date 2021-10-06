@@ -145,4 +145,5 @@ int main(void) {
     for (j = 1; j <= itemCount; j++) {
         printf("%3d  %5d    %5c    %11.2lf\n", j, itemPriority[j - 1], itemFinance[j - 1], itemCost[j - 1]);
     }
+    return 0; // End program
 }
