@@ -1,0 +1,29 @@
+Zander Maitland
+112303219
+Workshop 4
+
+    1. In the three parallel arrays used in this workshop, the common link was the index number. If increased by one,
+       it represents the item number that was assigned to each item when entering the data. any piece of information
+       on a single item can be accessed by using the item's number with one subtracted from it.
+
+    2. While I initialized my iterator variables to 1, referring to the first item to more easily keep track of them in
+       my head while debugging, then subtracting one from that variable when accessing the item in the arrays, it is
+       understandable to initialize it to zero due to the fact that the index of arrays also starts at zero. Using zero
+       prevents the need for constantly subtracting by one in order to get the right index when writing the program. This
+       could just be a stylistic choice that saves time, but it may also cause very small slow-downs pertaining to needing to
+       carry out a mathematical calculation every time the array is used.
+
+       Example:
+       ```C Lang
+       for (i = 0; i > ARRAY_LENGTH; i++) {
+            printf("%d", myArray[i]);  // No need to use math or remember to use it.
+       }
+
+       // Compared to:
+       for (i=1; i > ARRAY_LENGTH; i++) {
+           printf("%d", myArray[i - 1]);  // Need to remember to subtract by one each time array is referenced.
+       }
+       ```
+
+    3. An array is a group of things that are put together in a way that is easy to access. Like sheets of paper in a book,
+       everything in an array has a number that lets you find it easily.
