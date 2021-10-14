@@ -62,7 +62,6 @@ int main (void) {
     scanf(" %c", &player.symbol);
 
     // Begin validation loop
-    correct = 0; // Reset to 0 just in case.
     while (!correct) {
         // Prompt user for amount of lives.
         printf("Set the number of lives: ");
@@ -137,14 +136,111 @@ int main (void) {
     // Print instructions
     printf("Enter the bomb positions in sets of %d where a value\n"
            "of 1=BOMB,and 0=NO BOMB. Space-delimit your input.\n"
-           "(Example: 1 0 0 1 1) NOTE: there are 35 to set!\n", PATH_MULTIPLE);
+           "(Example: 1 0 0 1 1) NOTE: there are %d to set!\n", PATH_MULTIPLE, game.pathLength);
 
-    // Begin input loop
     int i; // Declare before statement before loop for backwards compatibility.
-    for (i = PATH_MULTIPLE; i == game.pathLength; i += PATH_MULTIPLE) {
-        // Prompt user for input.
-        printf("");
+
+    // Loop starting at Path Multiple, incrementing by Path Multiple each time until reaches path length
+    for (i = PATH_MULTIPLE; i <= game.pathLength; i += PATH_MULTIPLE) {
+        // Begin validation loop
+        while (!correct) {
+            // Prompt the user for input.
+            if ((i < 10) && ((i - (PATH_MULTIPLE - 1) < 10)))
+            {
+                // If both sides are less than 10.
+                printf("   Positions [ %d- %d]: ", i - (PATH_MULTIPLE - 1), i);
+            } else if (i - (PATH_MULTIPLE - 1) < 10)
+            {
+                // If only the first is less than 10.
+                printf("   Positions [ %d-%d]: ", i - (PATH_MULTIPLE - 1), i);
+            } else
+            {
+                // Both are greater than 10.
+                printf("   Positions [%d-%d]: ", i - (PATH_MULTIPLE - 1), i);
+            }
+
+            // Scan the input.
+            // Loop amount of times the path multiple is to get input.
+            int j;
+            for (j = PATH_MULTIPLE; j > 0; j--)
+            {
+                // Get each of the values based on each number.
+                // They are placed in the index of i - j (left to right, just a little more complicated)
+                scanf("%d", &game.bombMap[i - j]);
+
+                if ((game.bombMap[i - j] != 0) && (game.bombMap[i - j] != 1))
+                {
+                    // User provided a value that wasnt a zero or one.
+                    correct = 0;
+                    printf("      ERROR: Please enter only values of zero or one! Detected: %d\n", game.bombMap[i - j]);
+                } else {
+                    correct = 1;
+                }
+            }
+        }
+        correct = 0; // Reset for next iteration.
     }
+    // The bomb locations are now setup. Output confirmation
+    printf("BOMB placement set\n");
+
+    //  ==========================
+    //  |   Treasure Placement   |
+    //  ==========================
+    printf("\n"
+           "TREASURE Placement\n"
+           "------------------\n");
+    // Print instructions
+    printf("Enter the treasure placements in sets of %d where a value\n"
+           "of 1=TREASURE,and 0=NO TREASURE. Space-delimit your input.\n"
+           "(Example: 1 0 0 1 1) NOTE: there are %d to set!\n", PATH_MULTIPLE, game.pathLength);
+
+    int k; // Declare before statement before loop for backwards compatibility.
+
+    // Loop starting at Path Multiple, incrementing by Path Multiple each time until reaches path length
+    for (k = PATH_MULTIPLE; k <= game.pathLength; k += PATH_MULTIPLE) {
+        // Begin validation loop
+        while (!correct) {
+            // Prompt the user for input.
+            if ((k < 10) && ((k - (PATH_MULTIPLE - 1) < 10)))
+            {
+                // If both sides are less than 10.
+                printf("   Positions [ %d- %d]: ", k - (PATH_MULTIPLE - 1), k);
+            } else if (k - (PATH_MULTIPLE - 1) < 10)
+            {
+                // If only the first is less than 10.
+                printf("   Positions [ %d-%d]: ", k - (PATH_MULTIPLE - 1), k);
+            } else
+            {
+                // Both are greater than 10.
+                printf("   Positions [%d-%d]: ", k - (PATH_MULTIPLE - 1), k);
+            }
+
+            // Scan the input.
+            // Loop amount of times the path multiple is to get input.
+            int l;
+            for (l = PATH_MULTIPLE; l > 0; l--)
+            {
+                // Get each of the values based on each number.
+                // They are placed in the index of i - j (left to right, just a little more complicated)
+                scanf("%d", &game.treasureMap[k - l]);
+
+                if ((game.treasureMap[k - l] != 0) && (game.treasureMap[k - l] != 1))
+                {
+                    // User provided a value that wasn't a zero or one.
+                    correct = 0;
+                    printf("      ERROR: Please enter only values of zero or one! Detected: %d\n", game.treasureMap[k - l]);
+                } else {
+                    correct = 1;
+                }
+            }
+        }
+        correct = 0; // Reset for next iteration.
+    }
+    // The treasure is now placed and the game is setup. Output confirmation
+    printf("TREASURE placement set\n"
+           "\n"
+           "GAME configuration set-up is complete...\n");
+
 
     return 0;
 }
