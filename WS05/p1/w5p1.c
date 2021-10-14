@@ -119,7 +119,7 @@ int main (void) {
             correct = 1;
         } else {
             // The provided move limit is invalid. Return error.
-            printf("     Value must be between %d and %d\n", MIN_MOVES, MAX_MOVES);
+            printf("    Value must be between %d and %d\n", MIN_MOVES, MAX_MOVES);
             correct = 0;
         }
         // Continue the loop if not correct.
@@ -135,7 +135,7 @@ int main (void) {
            "--------------\n");
     // Print instructions
     printf("Enter the bomb positions in sets of %d where a value\n"
-           "of 1=BOMB,and 0=NO BOMB. Space-delimit your input.\n"
+           "of 1=BOMB, and 0=NO BOMB. Space-delimit your input.\n"
            "(Example: 1 0 0 1 1) NOTE: there are %d to set!\n", PATH_MULTIPLE, game.pathLength);
 
     int i; // Declare before statement before loop for backwards compatibility.
@@ -191,7 +191,7 @@ int main (void) {
            "------------------\n");
     // Print instructions
     printf("Enter the treasure placements in sets of %d where a value\n"
-           "of 1=TREASURE,and 0=NO TREASURE. Space-delimit your input.\n"
+           "of 1=TREASURE, and 0=NO TREASURE. Space-delimit your input.\n"
            "(Example: 1 0 0 1 1) NOTE: there are %d to set!\n", PATH_MULTIPLE, game.pathLength);
 
     int k; // Declare before statement before loop for backwards compatibility.
@@ -241,6 +241,47 @@ int main (void) {
            "\n"
            "GAME configuration set-up is complete...\n");
 
+    //  ==================================
+    //  |   Configuration Confirmation   |
+    //  ==================================
+    printf("\n"
+           "------------------------------------\n"
+           "TREASURE HUNT Configuration Settings\n"
+           "------------------------------------\n");
+
+    // Player configuration
+    printf("Player:\n"
+           "   Symbol     : %c\n"
+           "   Lives      : %d\n"
+           "   Treasure   : [ready for gameplay]\n"
+           "   History    : [ready for gameplay]\n",
+           player.symbol,
+           player.lives);
+
+    printf("\n"); // newline as separator
+
+    // Game configuration
+    printf("Game:\n"
+           "   Path Length: %d\n", game.pathLength);
+
+    // Bombs output
+    printf("   Bombs      : ");
+    int m;
+    for (m = 0; m < game.pathLength; m++) printf("%d", game.bombMap[m]);
+
+    // Treasure output
+    printf("\n"
+           "   Treasure   : ");
+    int n;
+    for (n = 0; n < game.pathLength; n++) printf("%d", game.treasureMap[n]);
+
+    printf("\n");
+
+    // Print readiness confirmation
+    printf("\n"
+           "====================================\n"
+           "~ Get ready to play TREASURE HUNT! ~\n"
+           "====================================\n");
 
     return 0;
 }
