@@ -358,7 +358,8 @@ int main (void) {
     printf("\n"
            "====================================\n"
            "~ Get ready to play TREASURE HUNT! ~\n"
-           "====================================\n");
+           "====================================\n"
+           "\n");
 
     //  ======================================
     //  |   Fill Needed Arrays With Zeroes   |
@@ -388,7 +389,7 @@ int main (void) {
         int selectedMove;
         while (!correct) {
             // Prompt user for input
-            printf("Next Move [1 - %d]: ", game.pathLength);
+            printf("Next Move [1-%d]: ", game.pathLength);
             scanf("%d", &selectedMove);
 
             // Validate response
@@ -460,6 +461,6 @@ int main (void) {
            "#   Game over!   #\n"
            "##################\n"
            "\n"
-           "You should play again and try to beat your score!!\n");
+           "You should play again and try to beat your score!\n");
     return 0;
 }

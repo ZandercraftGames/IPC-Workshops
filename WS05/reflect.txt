@@ -2,3 +2,43 @@ Zander Maitland
 112303219
 Workshop 5
 
+    1. The use of user-defined structures helped to keep things simplified and organized during the
+       development of the program. Because of them, all the variables related to the same thing
+       are in one place and are easy to access. In my usage of it, it allowed me to more easily pass
+       and access all the values needed in the displayHUD function (which displays the HUD of the game).
+
+       Instead of using something like this:
+       ```C Lang
+       int displayHUD (int pathLength, int currentPosition, int playerSymbol, int pastPositions[MAX_PATH_SIZE], int bombMap[MAX_PATH_SIZE], int treasureMap[MAX_PATH_SIZE], int lives, int treasures, int movesLeft) {
+           . . .  // Code here
+       }
+       ```
+
+       I was able to just pass in the instances of the game and player structures like so:
+       ```C Lang
+       int displayHUD (gameInfo game, playerInfo player) {
+           . . .  // Code here
+       }
+       ```
+       For this, as well as a few other reasons, is how the use of structures greatly simplifies development as well as the
+       structure of the program.
+
+    2. In order to keep such a history, the first change required would be that the program would have to include a menu
+       that would allow the player to either play another round of the game, output the results of previous games
+       (such as high scores) and to exit the program.
+
+       In terms of the handling of such historical data (the second change), a new structure could be made that includes the
+       values for lives left, moves left, as well as treasures discovered. An array of these structures would then be
+       used to keep track of all previous games. Data could be pulled from them using the index of the order in which the games
+       were played.
+       This, of course, is presuming that we are not storing the data in persistent memory and are only keeping it
+       within the current running process until the program is stopped by the player.
+
+    3. The part of this program that I spent the most time on is the output of the HUD. More specifically, the part of the
+       HUD that displays the current position of the player, the discovered positions and the rulers. The major ruler was easy,
+       but the minor ruler took a little longer to figure out. I was over-complicating it by using a nested for loop, but then
+       thought that maybe I should look at it in a completely different way. This was to just grab the number in the ones column
+       and display it. I did this by taking the modulus of the current iteration of the loop and 10.
+       I also spent a lot of time working on the current position of the player by trying to find the last-added position to the
+       position history. Instead of doing this, keeping track of the current player's position as an integer was a much easier
+       way to display the player (symbol).
