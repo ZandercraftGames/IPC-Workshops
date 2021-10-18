@@ -402,7 +402,7 @@ int main (void) {
                 } else if ((game.treasureMap[selectedMove - 1] == 1) && (game.bombMap[selectedMove - 1] == 1)) {
                     // Player found a place with a bomb and treasure.
                     printf("===============> [&] !!! BOOOOOM !!! [&]\n"
-                           "===============> [&] $$$ Life Insurance Payout!!! [&\n\n");
+                           "===============> [&] $$$ Life Insurance Payout!!! [&]\n\n");
                     player.movesLeft--; // remove one move.
                     player.lives--; // remove one life.
                     player.treasures++; // add one treasure.
