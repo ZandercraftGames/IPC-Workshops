@@ -4,4 +4,4 @@ project(BTP_Workshops C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(BTP_Workshops
-        WS05/p2/w5p2.c)
+        WS06/p1/w6p1.c)
