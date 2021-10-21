@@ -78,8 +78,7 @@ double getDoublePositive (double *pos_double_var)
 void openingMessage (const int num_products)
 {
     // Print opening message header.
-    printf("\n"
-           "Cat Food Cost Analysis\n"
+    printf("Cat Food Cost Analysis\n"
            "======================\n\n");
 
     // Print opening message details.
@@ -95,7 +94,7 @@ struct CatFoodInfo getCatFoodInfo (const int sequence_num)
     // Display the sequence's header
     printf("\n"
            "Cat Food Product #%d\n"
-           "--------------------\n", sequence_num);
+           "--------------------\n", (sequence_num + 1));
 
     // Prompt user for SKU
     printf("SKU           : ");
