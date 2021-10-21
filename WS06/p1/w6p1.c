@@ -79,9 +79,6 @@ void openingMessage (const int num_products)
 {
     // Print opening message header.
     printf("\n"
-           "===========================\n"
-           "Starting Main Program Logic\n"
-           "===========================\n\n"
            "Cat Food Cost Analysis\n"
            "======================\n\n");
 
