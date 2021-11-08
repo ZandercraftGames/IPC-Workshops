@@ -157,7 +157,7 @@ int convertLbsG (const double *pounds, int *resultG)
     double result;
 
     // Calculate the amount of grams.
-    result = convertLbsKg(pounds, &result) * 1000;
+    result = convertLbsKg(pounds, NULL) * 1000;
 
     if (resultG != NULL) {
         // If the pointer value provided is not null, set the variable to the calculated value.
@@ -169,37 +169,82 @@ int convertLbsG (const double *pounds, int *resultG)
 // 10. convert lbs: kg and g
 void convertLbs (const double *pounds, double *resultKg, int *resultG)
 {
-
+    *resultKg = convertLbsKg(pounds, NULL);  // Change resultKG to value.
+    *resultG = convertLbsG(pounds, NULL);  // Change resultG to value.
 }
 
 // 11. calculate: servings based on gPerServ
 double calculateServings (const int gPerServ, const int productGrams, double *resultServings)
 {
+    double result;
+    result = (double) productGrams / (double) gPerServ;
 
+    if (resultServings != NULL) {
+        // If the pointer value provided is not null, set the variable to the calculated value.
+        *resultServings = result;  // Change variable to the calculated value.
+    }
+    return result;   // Return the calculated value.
 }
 
 // 12. calculate: cost per serving
 double calculateCostPerServing (const double *price, const double *servings, double *resultCostPerServ)
 {
+    double result;
 
+    // Calculate the cost per serving.
+    result = *price / *servings;
+
+    if (resultCostPerServ != NULL) {
+        // If the pointer value provided is not null, set the variable to the calculated value.
+        *resultCostPerServ = result;  // Change variable to the calculated value.
+    }
+    return result;   // Return the calculated value.
 }
 
 // 13. calculate: cost per calorie
 double calculateCostPerCal (const double *price, const double *calories, double *resultCostPerCal)
 {
+    double result;
 
+    // Calculate the cost per calorie.
+    result = *price / *calories;
+
+    if (resultCostPerCal != NULL) {
+        // If the pointer value provided is not null, set the variable to the calculated value.
+        *resultCostPerCal = result;  // Change variable to the calculated value.
+    }
+    return result;   // Return the calculated value.
 }
 
 // 14. Derive a reporting detail record based on the cat food product data
 struct ReportData calculateReportData (const struct CatFoodInfo item)
 {
+    struct ReportData data;  // Local instance of data for modification
 
+    // Copy over data from the Cat Food item
+    data.sku = item.sku;            // Unique item identifier
+    data.price = item.price;        // Price
+    data.calories = item.calories;  // Calories per suggested serving
+    data.weightLBS = item.weight;   // Weight in pounds
+
+    // Calculate weight attributes
+    convertLbs(&data.weightLBS, &data.weightKG, &data.weightG);
+
+    // Calculate servings
+    calculateServings(SUGGESTED_SERVING, data.weightG, &data.servings);
+
+    // Calculate costs
+    double calories = data.calories * data.servings;  // Calculate the total calories in the product
+    calculateCostPerCal(&data.price, &calories, &data.caloriesCost);  // Calculate cost per calorie
+    calculateCostPerServing(&data.price, &data.servings, &data.servingCost);  // Calculate the cost per serving
+
+    return data; // Return the data structure.
 }
 
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void)
 {
-	printf("Analysis Report (Note: Serving = %dg\n", ???);
+	printf("Analysis Report (Note: Serving = %dg)\n", SUGGESTED_SERVING);
 	printf("---------------\n");
 	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
 	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
@@ -208,13 +253,25 @@ void displayReportHeader(void)
 // 16. Display the formatted data row in the analysis table
 void displayReportData (const struct ReportData data, const int isCheapestOption)
 {
-
+    // Print the data to the screen.
+    printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf%3s\n", data.sku, data.price, data.weightLBS,
+    data.weightKG, data.weightG, data.calories, data.servings, data.servingCost, data.caloriesCost,
+    isCheapestOption ? " ***" : "");  // NOTE: Appends "***" to the end if the item is the cheapest option.
 }
 
 // 17. Display the findings (cheapest)
 void displayFinalAnalysis (const struct CatFoodInfo cheapestProductData)
 {
+    // Print Header
+    printf("Final Analysis\n"
+           "--------------\n"
+           "Based on the comparison data, the PURRR-fect economical option is:\n");
 
+    // Print the data of the best product
+    printf("SKU:%d Price: $%.2lf\n", cheapestProductData.sku, cheapestProductData.price);
+
+    // Display closing message
+    printf("Happy Shopping!\n");
 }
 
 // ----------------------------------------------------------------------------
@@ -224,6 +281,9 @@ void start(void)
 {
     // Variable Declarations
     struct CatFoodInfo products[MAX_PRODUCTS];
+    struct ReportData reportProducts[MAX_PRODUCTS] = {0};
+    double cheapestItemCost = -1;  // Used for tracking the cheapest item on the basis of cost
+    int cheapestItemIndex;    // The index of the cheapest item found
 
     // Display the opening message.
     openingMessage(MAX_PRODUCTS);
@@ -233,6 +293,15 @@ void start(void)
     for (i = 0; i < MAX_PRODUCTS; i++) {
         // Get the cat food info for the product and store it in the array.
         products[i] = getCatFoodInfo(i);
+
+        // Calculate the report data based on information provided.
+        reportProducts[i] = calculateReportData(products[i]);
+
+        // Check if the item is the cheapest item yet. (checks if cheaper or if cheapestItem has not been initialized yet)
+        if ((reportProducts[i].servingCost <= cheapestItemCost) || cheapestItemCost == -1) {
+            cheapestItemCost = reportProducts[i].servingCost;
+            cheapestItemIndex = i;
+        }
     }
 
     // Print the table header.
@@ -244,4 +313,29 @@ void start(void)
         // Print the row for the appropriate entry.
         displayCatFoodData(products[j].sku, &products[j].price, products[j].calories, &products[j].weight);
     }
+
+    printf("\n"); //newline
+
+    // ================
+    // Analysis Report
+    // ================
+
+    // Display header
+    displayReportHeader();
+
+    // Display table values
+    int k;
+    for (k = 0; k < MAX_PRODUCTS; k++) {
+        if (k == cheapestItemIndex) {
+            displayReportData(reportProducts[k], 1);
+        } else {
+            displayReportData(reportProducts[k], 0);
+        }
+    }
+
+    printf("\n"); // newline
+
+    // Display final analysis
+    displayFinalAnalysis(products[cheapestItemIndex]);
+
 }

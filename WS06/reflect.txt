@@ -1,0 +1,9 @@
+Zander Maitland
+112303219
+Workshop 6
+
+1. The passing of the ReportData structure could be improved by always using a pointer to the original variable instead of
+copies of the variable in all the functions. This would mean that any use of that particular variable in functions would reference
+a single location in memory instead of the multiple.
+
+2.
