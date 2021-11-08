@@ -256,7 +256,7 @@ void displayReportData (const struct ReportData data, const int isCheapestOption
     // Print the data to the screen.
     printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf%3s\n", data.sku, data.price, data.weightLBS,
     data.weightKG, data.weightG, data.calories, data.servings, data.servingCost, data.caloriesCost,
-    isCheapestOption ? " ***" : NULL);  // NOTE: Appends "***" to the end if the item is the cheapest option.
+    isCheapestOption ? " ***" : "");  // NOTE: Appends "***" to the end if the item is the cheapest option.
 }
 
 // 17. Display the findings (cheapest)
