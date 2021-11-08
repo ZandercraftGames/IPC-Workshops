@@ -244,7 +244,7 @@ struct ReportData calculateReportData (const struct CatFoodInfo item)
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void)
 {
-	printf("Analysis Report (Note: Serving = %dg)\n", SUGGESTED_SERVING);
+	printf("Analysis Report (Note: Serving = %dg\n", SUGGESTED_SERVING);
 	printf("---------------\n");
 	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
 	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
@@ -256,7 +256,7 @@ void displayReportData (const struct ReportData data, const int isCheapestOption
     // Print the data to the screen.
     printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf%3s\n", data.sku, data.price, data.weightLBS,
     data.weightKG, data.weightG, data.calories, data.servings, data.servingCost, data.caloriesCost,
-    isCheapestOption ? " ***" : "");  // NOTE: Appends "***" to the end if the item is the cheapest option.
+    isCheapestOption ? " ***" : NULL);  // NOTE: Appends "***" to the end if the item is the cheapest option.
 }
 
 // 17. Display the findings (cheapest)
