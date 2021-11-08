@@ -281,7 +281,7 @@ void start(void)
 {
     // Variable Declarations
     struct CatFoodInfo products[MAX_PRODUCTS];
-    struct ReportData reportProducts[MAX_PRODUCTS] = {0};
+    struct ReportData reportProducts[MAX_PRODUCTS];
     double cheapestItemCost = -1;  // Used for tracking the cheapest item on the basis of cost
     int cheapestItemIndex;    // The index of the cheapest item found
 
