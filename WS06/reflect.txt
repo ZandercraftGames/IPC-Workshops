@@ -2,8 +2,27 @@ Zander Maitland
 112303219
 Workshop 6
 
-1. The passing of the ReportData structure could be improved by always using a pointer to the original variable instead of
-copies of the variable in all the functions. This would mean that any use of that particular variable in functions would reference
-a single location in memory instead of the multiple.
+1. The ReportData structure takes up 60 bytes in memory. The passing of the ReportData structure could be improved by
+always using a pointer to the original variable instead of copies of the variable in all the functions. This would mean
+that any use of that particular variable in functions would reference a single location in memory instead of the multiple.
 
-2.
+2. The ReportData structure could be improved by including a pointer to the CatFoodInfo variable that it is
+linked to. This would prevent the duplication of the data. See the following:
+```
+struct ReportData
+{
+    struct CatFoodInfo *item;
+    double weightKG;     // Product weight in kilograms.
+    int    weightG;      // Product weight in grams. (whole number)
+    double servings;     // Number of total servings.
+    double servingCost;  // Cost per serving.
+    double caloriesCost; // Cost of calories per serving.
+};
+```
+
+Use in displayReportData:
+```
+printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf%3s\n", data.*item.sku, data.*item.price, data.*item.weight,
+    data.weightKG, data.weightG, data.*item.calories, data.servings, data.servingCost, data.caloriesCost,
+    isCheapestOption ? " ***" : "");
+```
